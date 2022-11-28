@@ -2,7 +2,7 @@ import React from "react"; //this component creates movie card
 
 const MovieCard = ({movie}) => {
     return (
-        <div className="container">
+        
             <div className="movie">
                 <div>
                     <p>
@@ -19,7 +19,7 @@ const MovieCard = ({movie}) => {
                     <h3>{movie.Title}</h3>
                 </div>
             </div>
-        </div>
+        
     )
 }
 

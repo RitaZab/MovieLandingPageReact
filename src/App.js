@@ -26,11 +26,14 @@ const App = () => {
     },[])
     return (
         <div className="app">
-            <h1>FilmoweZagłębie</h1>
+            <h1>Filmowe Zagłębie</h1>
             <div className="search">
                 <input placeholder="Wpisz szukany tytuł"
                     value={searchTerm}
-                    onChange={(e)=>setSearchTerm(e.target.value)}>
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    onKeyPress={event => {
+                        if (event.key === "Enter") {
+                            searchMovies(searchTerm)}}}>
                 </input>
                 <img src={SearchIcon} alt="searchicon"
                 onClick={()=>searchMovies(searchTerm)}>
@@ -48,9 +51,9 @@ const App = () => {
                     </div>
                 )
                 }
-            
+            </div>
 
-        </div>
+    
         
     );
 }
