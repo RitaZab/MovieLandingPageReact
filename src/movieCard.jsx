@@ -1,22 +1,22 @@
 import React from "react"; //this component creates movie card
 
-const MovieCard = ({movie1}) => {
+const MovieCard = ({movie}) => {
     return (
         <div className="container">
             <div className="movie">
                 <div>
                     <p>
-                    {movie1.Year}
+                    {movie.Year}
                     </p></div>
                 <div>
-                    <img src={movie1.Poster !== 'N/A' ? movie1.Poster : "https://via.placeholder.com/400"} alt={movie1.Title}>
+                    <img src={movie.Poster !== 'N/A' ? movie.Poster : "https://via.placeholder.com/400"} alt={movie.Title}>
                     </img>
                 </div>
                 <div>
                     <span>
-                        {movie1.Type}
+                        {movie.Type}
                     </span>
-                    <h3>{movie1.Title}</h3>
+                    <h3>{movie.Title}</h3>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import {useEffect} from "react";
+import {useState, useEffect} from "react";
 //code 27579622
 import "./App.css"
 import SearchIcon from "./search.png"
@@ -14,11 +14,12 @@ const movie1={
     "Poster": "https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_SX300.jpg"
 }
 const App = () => {
-
+    const [movies, setMovies] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
     const searchMovies = async (title) => {
         const response = await fetch(`${API_URL}&s=${title}`);
         const data = await response.json();
-        console.log(data.Search);
+        setMovies(data.Search);
     }
     useEffect(() => {
         searchMovies("Batman")        
@@ -28,17 +29,26 @@ const App = () => {
             <h1>FilmoweZagłębie</h1>
             <div className="search">
                 <input placeholder="Wpisz szukany tytuł"
-                    value="Batman"
-                    onChange={()=>{}}>
+                    value={searchTerm}
+                    onChange={(e)=>setSearchTerm(e.target.value)}>
                 </input>
                 <img src={SearchIcon} alt="searchicon"
-                onClick={()=>{}}>
+                onClick={()=>searchMovies(searchTerm)}>
                 </img>
             </div>
-            <div className="container">
-                <MovieCard movie1={movie1}></MovieCard>
-                
-            </div>
+            {movies?.length > 0
+            ?   (<div className="container">
+                    {movies.map((movie) => (
+                        <MovieCard movie={movie} />
+                    ))}
+                </div>)
+                : (
+                    <div className="empty">
+                        <h1>Nie odnaleziono żadnych filmów</h1>
+                    </div>
+                )
+                }
+            
 
         </div>
         
